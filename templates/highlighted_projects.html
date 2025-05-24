@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>أبرز المشاريع التي نعمل بها الآن</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Tahoma;
+            background: url('/static/img/bg_2.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .overlay {
+            background-color: rgba(0,0,0,0.65);
+            min-height: 100vh;
+            padding: 60px;
+            color: white;
+        }
+        table {
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        h2 {
+            color: white;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="overlay">
+    <h2>أبرز المشاريع التي نعمل بها الآن</h2>
+    {% if projects %}
+    <table>
+        <tr>
+            <th>اسم المشروع</th>
+            <th>المندوب</th>
+            <th>الحالة</th>
+        </tr>
+        {% for p in projects %}
+        <tr>
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p style="text-align:center;">لا توجد مشاريع حالياً.</p>
+    {% endif %}
+</div>
+</body>
+</html>
