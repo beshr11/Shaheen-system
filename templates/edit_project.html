@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تعديل تفاصيل المشروع</title>
+</head>
+<body style="font-family:Tahoma;background:#fff;padding:40px;">
+    <h2>تعديل تفاصيل المشروع</h2>
+    {% if projects %}
+    <form method="POST" action="/update_project">
+        <label>اختر المشروع:</label><br>
+        <select name="project_id" required>
+            {% for p in projects %}
+            <option value="{{ p[0] }}">{{ p[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>المدخول الكامل:</label><br>
+        <input type="number" name="total_income" step="0.01" required><br><br>
+
+        <label>تكلفة النقل:</label><br>
+        <input type="number" name="transport_cost" step="0.01" required><br><br>
+
+        <label>تكلفة العمال:</label><br>
+        <input type="number" name="labor_cost" step="0.01" required><br><br>
+
+        <label>نسبة المندوب (مثال 10 لـ 10٪):</label><br>
+        <input type="number" name="delegate_percent" step="0.01" required><br><br>
+
+        <button type="submit">حفظ التعديلات</button>
+    </form>
+    {% else %}
+    <p>لا توجد مشاريع حالياً.</p>
+    {% endif %}
+    <br><a href="/dashboard">العودة إلى لوحة التحكم</a>
+</body>
+</html>

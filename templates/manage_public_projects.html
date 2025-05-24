@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>إدارة أبرز المشاريع</title>
+</head>
+<body style="font-family:Tahoma;background:#fff;padding:40px;">
+    <h2>إدارة المشاريع العامة (أبرز المشاريع)</h2>
+
+    <form method="POST" action="/add_public_project">
+        <label>اسم المشروع:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>من طرف (اسم المندوب):</label><br>
+        <input type="text" name="delegate" required><br><br>
+
+        <label>الحالة:</label><br>
+        <select name="status">
+            <option value="جاري التركيب">جاري التركيب</option>
+            <option value="اكتمل">اكتمل</option>
+            <option value="لم يكتمل">لم يكتمل</option>
+        </select><br><br>
+
+        <button type="submit">إضافة المشروع</button>
+    </form>
+
+    <hr>
+    <h3>المشاريع الحالية</h3>
+    {% if projects %}
+    <table border="1" cellpadding="8" cellspacing="0">
+        <tr>
+            <th>اسم المشروع</th>
+            <th>المندوب</th>
+            <th>الحالة</th>
+            <th>حذف</th>
+        </tr>
+        {% for p in projects %}
+        <tr>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>{{ p[3] }}</td>
+            <td><a href="/delete_public_project/{{ p[0] }}">حذف</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>لا توجد مشاريع حالياً.</p>
+    {% endif %}
+
+    <br><a href="/dashboard">العودة إلى لوحة التحكم</a>
+</body>
+</html>
